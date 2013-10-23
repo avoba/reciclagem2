@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.arthur.modelo;
+package br.com.arthur.reciclagem.modelo;
 
 import java.util.Date;
 

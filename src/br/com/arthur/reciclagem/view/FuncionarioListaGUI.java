@@ -4,19 +4,27 @@
  */
 package br.com.arthur.reciclagem.view;
 
+import br.com.arthur.reciclagem.controller.FuncionarioController;
+import br.com.arthur.reciclagem.modelo.Funcionario;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author guest01
  */
 public class FuncionarioListaGUI extends javax.swing.JFrame {
 
+    private JTable tabela;
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form FuncionarioListaGUI
      */
     public FuncionarioListaGUI() {
         initComponents();
-        
-        criaJTable();
+        criaTabela();
         painelRolagem.setViewportView(tabela);
     }
 
@@ -33,11 +41,11 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        txPesquisa = new javax.swing.JTextField();
+        painelRolagem = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btRemover = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
         btInserir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,9 +76,19 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Remover");
+        btRemover.setText("Remover");
+        btRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Editar");
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
 
         btInserir.setText("Inserir");
         btInserir.addActionListener(new java.awt.event.ActionListener() {
@@ -87,9 +105,9 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                 .addContainerGap(335, Short.MAX_VALUE)
                 .addComponent(btInserir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btEditar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btRemover)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -97,8 +115,8 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btRemover)
+                    .addComponent(btEditar)
                     .addComponent(btInserir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -114,11 +132,11 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
+                            .addComponent(painelRolagem)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 34, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -131,9 +149,9 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -159,6 +177,64 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         fi.setVisible(true);
     }//GEN-LAST:event_btInserirActionPerformed
 
+    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
+        int linhaSelecionada = -1;
+        linhaSelecionada = tabela.getSelectedRow();
+        if (linhaSelecionada >= 0) {
+            int idFuncionario = (int) tabela.getValueAt(linhaSelecionada, 0);
+            FuncionarioController fc = new FuncionarioController();
+            if (fc.remove(idFuncionario)) {
+                modelo.removeRow(linhaSelecionada);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nunhuma linha selecionada");
+            }
+        }
+    }//GEN-LAST:event_btRemoverActionPerformed
+
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+         int linhaSelecionada = -1;
+        linhaSelecionada = tabela.getSelectedRow();
+        if(linhaSelecionada >=0){
+            int idFuncionario = (int) tabela.getValueAt(linhaSelecionada , 0);
+            FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo, linhaSelecionada, idFuncionario);
+            fi.setVisible(true);
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Nenhuma linha foi selecionada.");
+        }
+    }//GEN-LAST:event_btEditarActionPerformed
+
+     private void txPesquisaActionPerformed(java.awt.event.ActionEvent evt) {                                           
+       String nome = txPesquisa.getText();
+       FuncionarioController fc = new FuncionarioController();
+       modelo.setNumRows(0);
+       for(Funcionario f : fc.listByNome(nome)){
+           modelo.addRow(new Object[]{
+               f.getId(),
+               f.getNome(),
+               f.getCpf(),
+               f.getLogin()
+           });
+       }
+    } 
+    
+      private void criaTabela() {
+        tabela = new JTable(modelo);
+        modelo.addColumn("Código");
+        modelo.addColumn("Nome");
+        modelo.addColumn("CPF");
+        modelo.addColumn("Usuário");
+        preencheTabela();
+    }
+      
+       private void preencheTabela(){
+        FuncionarioController fc = new FuncionarioController();
+        for(Funcionario f :fc.listarTodos()){
+            modelo.addRow(new Object[]
+            {f.getId(), f.getNome(),f.getCpf(), f.getLogin()
+            });
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -194,15 +270,15 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btEditar;
     private javax.swing.JButton btInserir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane painelRolagem;
+    private javax.swing.JTextField txPesquisa;
     // End of variables declaration//GEN-END:variables
 }

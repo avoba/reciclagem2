@@ -1,5 +1,5 @@
 
-package br.com.modelo;
+package br.com.arthur.reciclagem.modelo;
 
 
 public class Motorista extends Funcionario{
