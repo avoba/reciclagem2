@@ -4,12 +4,13 @@
  */
 package br.com.arthur.reciclagem.modelo.persistencia;
 
-import br.com.arthur.modelo.Funcionario;
+import br.com.arthur.reciclagem.modelo.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class FuncionarioDAOImplements {
     private static final String LISTBYID = "select * from funcionario where id =?;";
     private static final String LISTBYNOME = "select * from funcionario where nome like ?;";
 
-    @Override
+    //@Override
     public int salve(Funcionario f) {
         if (f.getId() == 0) {
             return insert(f);
@@ -79,7 +80,7 @@ public class FuncionarioDAOImplements {
         }
     }
 
-    @Override
+    //@Override
     public boolean remove(int id) {
         boolean status = false;
         Connection con = null;
@@ -104,7 +105,7 @@ public class FuncionarioDAOImplements {
         return status;
     }
 
-    @Override
+    //@Override
     public List<Funcionario> listAll() {
         Connection con = null;
         PreparedStatement pstm = null;
@@ -130,7 +131,6 @@ public class FuncionarioDAOImplements {
                 f.setEmail(rs.getString("email"));
                 f.setSalario(rs.getDouble("salario"));
                 f.setCtps(rs.getDouble("ctps"));
-                f.setDataAdmissao(rs.getDate("DataAdmissao"));
                 f.setSetor(rs.getString("setor"));
                 f.setCargo(rs.getString("cargo"));
                 f.setLogin(rs.getString("login"));
@@ -156,7 +156,7 @@ public class FuncionarioDAOImplements {
 
     }
 
-    @Override
+    //@Override
     public Funcionario listById(int id) {
         Connection con = null;
         PreparedStatement pstm = null;
@@ -243,7 +243,7 @@ public class FuncionarioDAOImplements {
         return retorno;
     }
 
-    @Override
+    //@Override
     public List<Funcionario> listByNome(String nome) {
         Connection con = null;
         PreparedStatement pstm = null;
@@ -255,16 +255,25 @@ public class FuncionarioDAOImplements {
             pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while (rs.next()) {
-                Funcionario u = new Funcionario();
-                u.setCodigo(rs.getInt("codigo"));
-                u.setNome(rs.getString("nome"));
-                u.setLogin(rs.getString("login"));
-                u.setSenha(rs.getString("senha"));
-                u.setCpf(rs.getString("CPF"));
-                u.setTelefone(rs.getString("telefone"));
-                u.setDataNascimento(rs.getDate("DataNascimento"));
-                u.setSexo(rs.getString("Sexo"));
-                funcionarios.add(u);
+                Funcionario f = new Funcionario();
+                f.setNome(rs.getString("nome"));
+                f.setDataNascimento(rs.getDate("DataNascimento"));
+                f.setCpf(rs.getString("CPF"));
+                f.setRg(rs.getString("rg"));
+                f.setEndereco(rs.getString("endereco"));
+                f.setBairro(rs.getString("bairro"));
+                f.setCidade(rs.getString("cidade"));
+                f.setBairro(rs.getString("telefone"));
+                f.setCelular(rs.getString("celular"));
+                f.setEmail(rs.getString("email"));
+                f.setSalario(rs.getDouble("salario"));
+                f.setCtps(rs.getDouble("ctps"));
+                f.setDataAdmissao(rs.getDate("DataAdmissao"));
+                f.setSetor(rs.getString("setor"));
+                f.setCargo(rs.getString("cargo"));
+                f.setLogin(rs.getString("login"));
+                f.setSenha(rs.getString("senha"));
+                funcionarios.add(f);
 
             }
         } catch (Exception e) {
@@ -279,4 +288,4 @@ public class FuncionarioDAOImplements {
         return funcionarios;
     }
 }
-}
+
