@@ -122,7 +122,7 @@
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPasswordField1" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextField1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jButton1" alignment="1" pref="186" max="32767" attributes="0"/>
+                                  <Component id="btLogin" alignment="1" pref="186" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -146,7 +146,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btLogin" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btCriarConta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -169,10 +169,13 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="jPasswordField1">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btLogin">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLoginActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btCriarConta">
               <Properties>

@@ -5,12 +5,13 @@
 package br.com.arthur.reciclagem.view;
 
 import br.com.arthur.reciclagem.view.FuncionarioInserirGUI;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author guest01
  */
 public class JanelaLogin extends javax.swing.JFrame {
-
+private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form UsuarioLogin
      */
@@ -35,7 +36,7 @@ public class JanelaLogin extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btLogin = new javax.swing.JButton();
         btCriarConta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +69,12 @@ public class JanelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha");
 
-        jButton1.setText("Login");
+        btLogin.setText("Login");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLoginActionPerformed(evt);
+            }
+        });
 
         btCriarConta.setText("Criar uma conta");
         btCriarConta.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +96,7 @@ public class JanelaLogin extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
+                            .addComponent(btLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(btCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -108,7 +114,7 @@ public class JanelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCriarConta)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -150,10 +156,16 @@ public class JanelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarContaActionPerformed
-        FuncionarioInserirGUI fi = new FuncionarioInserirGUI();
+        FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo);
         fi.setLocationRelativeTo(null);
         fi.setVisible(true);
     }//GEN-LAST:event_btCriarContaActionPerformed
+
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        PrincipalGUI jl = new PrincipalGUI();
+        jl.setLocationRelativeTo(null);
+        jl.setVisible(true);
+    }//GEN-LAST:event_btLoginActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -191,7 +203,7 @@ public class JanelaLogin extends javax.swing.JFrame {
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCriarConta;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;

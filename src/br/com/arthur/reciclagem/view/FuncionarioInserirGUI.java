@@ -55,29 +55,8 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         txTelefone.setText(f.getTelefone());
     }
 
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {
-
-        txBairro.setText("");
-        txCargo.setText("");
-        txCelular.setText("");
-        txCidade.setText("");
-        txCpf.setText("");
-        txCtps.setText("");
-        txEmail.setText("");
-        txEndereco.setText("");
-        txId.setText("");
-        txLogin.setText("");
-        txNome.setText("");
-        txRg.setText("");
-        txSalario.setText("");
-        txSenha.setText("");
-        txSetor.setText("");
-        txTelefone.setText("");
-
-    }
 
  
-
         @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -149,6 +128,8 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Lao UI", 0, 13)); // NOI18N
         jLabel13.setText("ID:");
+
+        txId.setEditable(false);
 
         jLabel2.setText("Login:");
 
@@ -461,6 +442,11 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         jButton2.setText("Cancelar");
 
         btLimpar.setText("Limpar");
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -592,6 +578,27 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         dispose();
     
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
+        txBairro.setText("");
+        txCargo.setText("");
+        txCelular.setText("");
+        txCidade.setText("");
+        txCpf.setText("");
+        txCtps.setText("");
+        txEmail.setText("");
+        txEndereco.setText("");
+        txDataAdmissao.setText("");
+        txDataNascimento.setText("");
+        txId.setText("");
+        txLogin.setText("");
+        txNome.setText("");
+        txRg.setText("");
+        txSalario.setText("");
+        txSenha.setText("");
+        txSetor.setText("");
+        txTelefone.setText("");
+    }//GEN-LAST:event_btLimparActionPerformed
 
 
 //    public static void main(String args[]) {
