@@ -11,18 +11,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * 
+ *
  *
  * @author guest01
  */
 public class FuncionarioInserirGUI extends javax.swing.JFrame {
+
     private DefaultTableModel modelo;
-private int linhaSelecionada;
+    private int linhaSelecionada;
 
-
-    /**
-     * Creates new form FuncionarioInserirGUI
-     */
+  
     public FuncionarioInserirGUI(DefaultTableModel modelo) {
         this.modelo = modelo;
         initComponents();
@@ -56,9 +54,9 @@ private int linhaSelecionada;
         txSetor.setText(f.getSetor());
         txTelefone.setText(f.getTelefone());
     }
-    
-    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       
+
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {
+
         txBairro.setText("");
         txCargo.setText("");
         txCelular.setText("");
@@ -76,80 +74,11 @@ private int linhaSelecionada;
         txSetor.setText("");
         txTelefone.setText("");
 
-    }       
-    
-     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                         
-       Funcionario f = new Funcionario();
-       if(!(txId.getText().equals("")||(txId.equals(null)))){f.setId(Integer.parseInt(txId.getText()));}
-      // u.setCodigo(Integer.parseInt(txCodigo.getText()));
-       
-       
-       
-                f.setDataNascimento(
-                f.setCpf(
-                f.setRg(
-                f.setEndereco(
-                f.setBairro(
-                f.setCidade(
-                f.setBairro(
-                f.setCelular(
-                f.setEmail(
-                f.setSalario(
-                f.setCtps(
-                f.setSetor(
-                f.setCargo(
-                f.setLogin(
-                f.setSenha(
-       txBairro.getText("");get
-        txCargo.getText("");
-        txCelular.getText("");
-        txCidade.getText("");
-        txCpf.getText("");
-        txCtps.getText("");
-        txEmail.getText("");
-        txEndereco.getText("");
-        txId.getText("");
-        f.setLogin(txLogin.getText("");
-        f.setNome(txNome.getText(""));
-        txRg.getText("");
-        txSalario.getText("");
-        txSenha.getText("");
-        txSetor.getText("");
-        txTelefone.getText("");
-       
+    }
 
-       
-       try{
-           String data = txDataNascimento.getText();
-           f.setDataNascimento(new SimpleDateFormat("dd/MM/yyyy").parse(data));
-           
-       }catch(Exception e){
-           JOptionPane.showMessageDialog(null, "Erro ao converter a data");
-       }
-       
-        FuncionarioController fc = new FuncionarioController();
-        if(f.getId() == 0){
-        int id = fc.salvar(f);
-        
-        if (id > 0){
-            modelo.addRow(new Object[]
-            {id, f.getNome(), f.getCpf(),
-            f.getLogin()});
-            JOptionPane.showMessageDialog
-                    (null, "Usuário cadastrado com sucesso!");
-        }
-        }else{
-            int id = fc.salvar(f);
-            if (id > 0) {
-                modelo.removeRow(linhaSelecionada);
-                modelo.addRow(new Object[]{id,f.getNome(),f.getCpf(),f.getLogin()});
-                JOptionPane.showMessageDialog(null,"Funcionario atualizado com sucesso");
-            }
-        }
-        dispose();
+ 
 
-  
-    @SuppressWarnings("unchecked")
+        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -160,9 +89,9 @@ private int linhaSelecionada;
         jLabel13 = new javax.swing.JLabel();
         txId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txLogin = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txSenha = new javax.swing.JPasswordField();
+        txLogin = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -181,12 +110,9 @@ private int linhaSelecionada;
         txBairro = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        txTelefone = new javax.swing.JTextField();
         txCidade = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        txCelular = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        txEmail = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -200,7 +126,10 @@ private int linhaSelecionada;
         txSalario = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        txTelefone = new javax.swing.JTextField();
+        txCelular = new javax.swing.JTextField();
+        txEmail = new javax.swing.JTextField();
+        btSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btLimpar = new javax.swing.JButton();
 
@@ -223,12 +152,6 @@ private int linhaSelecionada;
 
         jLabel2.setText("Login:");
 
-        txLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txLoginActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("Senha:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -242,13 +165,13 @@ private int linhaSelecionada;
                 .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,9 +181,9 @@ private int linhaSelecionada;
                     .addComponent(jLabel13)
                     .addComponent(txId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -320,31 +243,13 @@ private int linhaSelecionada;
         jLabel22.setFont(new java.awt.Font("Lao UI", 0, 12)); // NOI18N
         jLabel22.setText("Telefone:");
 
-        txTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txTelefoneActionPerformed(evt);
-            }
-        });
-
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Lao UI", 0, 12)); // NOI18N
         jLabel23.setText("Celular:");
 
-        txCelular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txCelularActionPerformed(evt);
-            }
-        });
-
         jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setFont(new java.awt.Font("Lao UI", 0, 12)); // NOI18N
         jLabel24.setText("Email:");
-
-        txEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txEmailActionPerformed(evt);
-            }
-        });
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -477,22 +382,22 @@ private int linhaSelecionada;
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(390, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(366, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -546,7 +451,12 @@ private int linhaSelecionada;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Salvar");
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
 
@@ -567,7 +477,7 @@ private int linhaSelecionada;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btSalvar)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -579,7 +489,7 @@ private int linhaSelecionada;
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btSalvar)
                     .addComponent(jButton2)
                     .addComponent(btLimpar))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -624,59 +534,100 @@ private int linhaSelecionada;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txTelefoneActionPerformed
-
-    private void txCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txCelularActionPerformed
-
-    private void txEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txEmailActionPerformed
-
-    private void txLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txLoginActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+         Funcionario f = new Funcionario();
+        if (!(txId.getText().equals("") || (txId.equals(null)))) {
+            f.setId(Integer.parseInt(txId.getText()));
         }
-        //</editor-fold>
+        // u.setCodigo(Integer.parseInt(txCodigo.getText()));
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FuncionarioInserirGUI().setVisible(true);
+
+        f.setNome(txNome.getText());
+                try {
+            String data = txDataNascimento.getText();
+            f.setDataNascimento(new SimpleDateFormat("dd/MM/yyyy").parse(data));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao converter a data");
+        }
+        f.setCpf(txCpf.getText());
+        f.setRg(txRg.getText());  
+        f.setEndereco(txEndereco.getText());        
+        f.setBairro(txBairro.getText());
+        f.setCidade(txCidade.getText());
+        f.setTelefone(txTelefone.getText());     
+        f.setCelular(txCelular.getText());
+        f.setSalario(Double.parseDouble(txSalario.getText()));
+        f.setEmail(txEmail.getText());
+        f.setCtps(Double.parseDouble(txCtps.getText()));
+        try {
+            String data = txDataAdmissao.getText();
+            f.setDataAdmissao(new SimpleDateFormat("dd/MM/yyyy").parse(data));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao converter a data");
+        }
+        f.setSetor(txSetor.getText());
+        f.setCargo(txCargo.getText());        
+        f.setLogin(txLogin.getText());
+        f.setSenha(txSenha.getText());        
+ 
+        FuncionarioController fc = new FuncionarioController();
+        if (f.getId() == 0) {
+            int id = fc.salvar(f);
+
+            if (id > 0) {
+                modelo.addRow(new Object[]{id, f.getNome(), f.getCpf(),
+                    f.getLogin()});
+                JOptionPane.showMessageDialog(null, "Funcionário cadastrado com sucesso!");
             }
-        });
-    }
+        } else {
+            int id = fc.salvar(f);
+            if (id > 0) {
+                modelo.removeRow(linhaSelecionada);
+                modelo.addRow(new Object[]{id, f.getNome(), f.getCpf(), f.getLogin()});
+                JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso");
+            }
+        }
+        dispose();
+    
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(FuncionarioInserirGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new FuncionarioInserirGUI().setVisible(true);
+//            }
+//        });
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLimpar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -718,7 +669,7 @@ private int linhaSelecionada;
     private javax.swing.JTextField txEmail;
     private javax.swing.JTextField txEndereco;
     private javax.swing.JTextField txId;
-    private javax.swing.JTextField txLogin;
+    private javax.swing.JPasswordField txLogin;
     private javax.swing.JTextField txNome;
     private javax.swing.JTextField txRg;
     private javax.swing.JTextField txSalario;
