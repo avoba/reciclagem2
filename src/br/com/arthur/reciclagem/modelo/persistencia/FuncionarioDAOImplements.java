@@ -18,12 +18,13 @@ import javax.swing.JOptionPane;
 
 public class FuncionarioDAOImplements implements FuncionarioDAO{
 
-    private static final String INSERT = "insert into funcionario ( nome, data_nascimento, cpf, rg,endereco,bairro,cidade,telefone,celular,email,salario,ctps,data_admissao,setor, cargo, login, senha) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String INSERT = "insert into funcionario ( nome, dataNascimento, cpf, rg,endereco,bairro,cidade,telefone,celular,email,salario,ctps,data_admissao,setor, cargo, login, senha) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String LIST = "select * from funcionario;";
     private static final String REMOVE = "delete from funcionario where id = ?;";
-    private static final String UPDATE = "update funcionario set nome=?, data_nascimento = ?, cpf=?, rg=?,endereco=?,bairro=?,cidade=?,telefone=?,celular=?,email=?,salario=?,ctps=?,data_admissao=?,setor=?, cargo=?, login=?, senha=? where id=?;";
+    private static final String UPDATE = "update funcionario set nome=?, dataNascimento = ?, cpf=?, rg=?,endereco=?,bairro=?,cidade=?,telefone=?,celular=?,email=?,salario=?,ctps=?,data_admissao=?,setor=?, cargo=?, login=?, senha=? where id=?;";
     private static final String LISTBYID = "select * from funcionario where id =?;";
     private static final String LISTBYNOME = "select * from funcionario where nome like ?;";
+    private static final String LOGIN  = "select * from funcionario where login = ? and senha = ?;";
 
     //@Override
     public int salve(Funcionario f) {
@@ -121,21 +122,22 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
             while (rs.next()) {
                 Funcionario f = new Funcionario();
                 f.setNome(rs.getString("nome"));
-                f.setDataNascimento(rs.getDate("DataNascimento"));
+                //f.setDataNascimento(rs.getDate("DataNascimento"));
                 f.setCpf(rs.getString("CPF"));
-                f.setRg(rs.getString("rg"));
-                f.setEndereco(rs.getString("endereco"));
-                f.setBairro(rs.getString("bairro"));
-                f.setCidade(rs.getString("cidade"));
-                f.setBairro(rs.getString("telefone"));
-                f.setCelular(rs.getString("celular"));
-                f.setEmail(rs.getString("email"));
-                f.setSalario(rs.getDouble("salario"));
-                f.setCtps(rs.getDouble("ctps"));
-                f.setSetor(rs.getString("setor"));
-                f.setCargo(rs.getString("cargo"));
+                f.setId(rs.getInt("ID"));
+               // f.setRg(rs.getString("rg"));
+              //  f.setEndereco(rs.getString("endereco"));
+               // f.setBairro(rs.getString("bairro"));
+               // f.setCidade(rs.getString("cidade"));
+               // f.setBairro(rs.getString("telefone"));
+               // f.setCelular(rs.getString("celular"));
+               // f.setEmail(rs.getString("email"));
+                ////f.setSalario(rs.getDouble("salario"));
+                //f.setCtps(rs.getDouble("ctps"));
+                //f.setSetor(rs.getString("setor"));
+                //f.setCargo(rs.getString("cargo"));
                 f.setLogin(rs.getString("login"));
-                f.setSenha(rs.getString("senha"));
+                //f.setSenha(rs.getString("senha"));
                 funcionarios.add(f);
             }
 
@@ -181,11 +183,12 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
                 f.setEmail(rs.getString("email"));
                 f.setSalario(rs.getDouble("salario"));
                 f.setCtps(rs.getDouble("ctps"));
-                f.setDataAdmissao(rs.getDate("DataAdmissao"));
+                f.setDataAdmissao(rs.getDate("Data_admissao"));
                 f.setSetor(rs.getString("setor"));
                 f.setCargo(rs.getString("cargo"));
                 f.setLogin(rs.getString("login"));
                 f.setSenha(rs.getString("senha"));
+                f.setId(rs.getInt("id"));
 
             }
 
@@ -229,6 +232,7 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
             pstm.setString(15, f.getCargo());
             pstm.setString(16, f.getLogin());
             pstm.setString(17, f.getSenha());
+            pstm.setInt(18, f.getId());
             pstm.execute();
             retorno = f.getId();
 
@@ -287,6 +291,36 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
             }
         }
         return funcionarios;
+    }
+
+    @Override
+    public boolean Login(String login, String senha) {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            con = ConnectionFactory.getConnection();
+            pstm = con.prepareStatement(LOGIN);
+            pstm.setString(1,  login );
+            pstm.setString(2, senha);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+               result = true;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir o login ou senha " + e.getMessage());
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(con, pstm, rs);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão");
+            }
+        }
+        return result;
+
+    
+        
     }
 }
 

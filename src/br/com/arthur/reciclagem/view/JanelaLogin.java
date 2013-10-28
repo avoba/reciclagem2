@@ -4,18 +4,25 @@
  */
 package br.com.arthur.reciclagem.view;
 
+import br.com.arthur.reciclagem.controller.FuncionarioController;
+import br.com.arthur.reciclagem.modelo.Funcionario;
 import br.com.arthur.reciclagem.view.FuncionarioInserirGUI;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author guest01
  */
 public class JanelaLogin extends javax.swing.JFrame {
-private DefaultTableModel modelo = new DefaultTableModel();
+
+    private DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form UsuarioLogin
      */
     public JanelaLogin() {
+
         initComponents();
     }
 
@@ -33,9 +40,9 @@ private DefaultTableModel modelo = new DefaultTableModel();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txSenha = new javax.swing.JPasswordField();
         btLogin = new javax.swing.JButton();
         btCriarConta = new javax.swing.JButton();
 
@@ -94,8 +101,8 @@ private DefaultTableModel modelo = new DefaultTableModel();
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(txSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txUsuario)
                             .addComponent(btLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
@@ -108,11 +115,11 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,11 +169,33 @@ private DefaultTableModel modelo = new DefaultTableModel();
     }//GEN-LAST:event_btCriarContaActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        PrincipalGUI jl = new PrincipalGUI();
-        jl.setLocationRelativeTo(null);
-        jl.setVisible(true);
-    }//GEN-LAST:event_btLoginActionPerformed
+        String usuario = txUsuario.getText();
+        String senha = txSenha.getText();
+        int x = 0;
+        FuncionarioController fc = new FuncionarioController();
+        if ((usuario.equals("")) || (senha.equals(""))) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            x = 1;
 
+        }
+
+        if (fc.Login(usuario, senha) == true) {
+
+            PrincipalGUI p = new PrincipalGUI(modelo);
+            p.setLocationRelativeTo(null);
+            p.setExtendedState(p.MAXIMIZED_BOTH);
+            p.setVisible(true);
+
+        } else {
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Login e senha incorreta!");
+                txUsuario.setText("");
+                txSenha.setText("");
+
+            }
+
+        }
+    }//GEN-LAST:event_btLoginActionPerformed
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -210,7 +239,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txSenha;
+    private javax.swing.JTextField txUsuario;
     // End of variables declaration//GEN-END:variables
 }

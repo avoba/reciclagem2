@@ -22,7 +22,8 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
     /**
      * Creates new form FuncionarioListaGUI
      */
-    public FuncionarioListaGUI() {
+    public FuncionarioListaGUI(DefaultTableModel modelo) {
+        this.modelo=modelo;
         initComponents();
         criaTabela();
         painelRolagem.setViewportView(tabela);
@@ -228,6 +229,7 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
     }
       
        private void preencheTabela(){
+           modelo.setNumRows(0);
         FuncionarioController fc = new FuncionarioController();
         for(Funcionario f :fc.listarTodos()){
             modelo.addRow(new Object[]

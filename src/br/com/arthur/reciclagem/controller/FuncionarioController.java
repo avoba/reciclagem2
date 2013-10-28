@@ -40,4 +40,9 @@ public class FuncionarioController{
         FuncionarioDAO dao = new FuncionarioDAOImplements();
         return dao.listByNome(nome);
     }
+    
+    public boolean Login(String login, String senha){
+        FuncionarioDAO f = new FuncionarioDAOImplements();
+        return f.Login(login, senha);
+    }
 }

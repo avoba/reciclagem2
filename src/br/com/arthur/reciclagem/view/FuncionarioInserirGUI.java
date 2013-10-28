@@ -33,7 +33,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         FuncionarioController fc = new FuncionarioController();
         Funcionario f = fc.listById(idFuncionario);
 
-
+        txId.setText(String.valueOf(f.getId()));
         txBairro.setText(f.getBairro());
         txCargo.setText(f.getCargo());
         txCelular.setText(f.getCelular());
@@ -42,7 +42,9 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         txCtps.setText(Double.toString(f.getCtps()));
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String data = sdf.format(f.getDataNascimento());
+        txDataNascimento.setText(data);
         String data2 = sdf.format(f.getDataAdmissao());
+        txDataAdmissao.setText(data2);
         txEmail.setText(f.getEmail());
         txEndereco.setText(f.getEndereco());
         txId.setText(Integer.toString(f.getId()));
@@ -70,7 +72,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txSenha = new javax.swing.JPasswordField();
-        txLogin = new javax.swing.JPasswordField();
+        txLogin = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -147,8 +149,8 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(txLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -676,7 +678,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txEmail;
     private javax.swing.JTextField txEndereco;
     private javax.swing.JTextField txId;
-    private javax.swing.JPasswordField txLogin;
+    private javax.swing.JTextField txLogin;
     private javax.swing.JTextField txNome;
     private javax.swing.JTextField txRg;
     private javax.swing.JTextField txSalario;

@@ -13,5 +13,5 @@ public interface FuncionarioDAO {
     List<Funcionario> listAll();
     Funcionario listById(int codigo);   
     List<Funcionario> listByNome(String nome);
-    
+    boolean Login (String login, String senha);
 }

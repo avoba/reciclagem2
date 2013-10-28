@@ -117,8 +117,8 @@
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txLogin" min="-2" pref="186" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txLogin" min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txSenha" min="-2" pref="143" max="-2" attributes="0"/>
@@ -169,7 +169,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="txSenha">
             </Component>
-            <Component class="javax.swing.JPasswordField" name="txLogin">
+            <Component class="javax.swing.JTextField" name="txLogin">
             </Component>
           </SubComponents>
         </Container>
