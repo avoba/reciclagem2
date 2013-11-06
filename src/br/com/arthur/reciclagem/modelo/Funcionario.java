@@ -12,6 +12,7 @@ public class Funcionario extends Pessoa{
     private String cargo;
     private String login;
     private String senha;
+    private Cargo2 cargo2;
 
     public Funcionario() {
     }
@@ -81,14 +82,18 @@ public class Funcionario extends Pessoa{
     public void setDataAdmissao(Date dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
-
+    
     @Override
     public String toString() {
         return "Funcionario{" + "id=" + id + ", salario=" + salario + ", ctps=" + ctps + ", dataAdmissao=" + dataAdmissao + ", setor=" + setor + ", cargo=" + cargo + ", login=" + login + ", senha=" + senha + '}';
     }
 
-   
+         public Cargo2 getCargo2() {
+             return cargo2;
+    }
 
-   
-    
+    public void setCargo2(Cargo2 cargo2) {
+        this.cargo2 = cargo2;
+    }
+
 }
