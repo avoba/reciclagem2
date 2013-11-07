@@ -4,9 +4,14 @@
  */
 package br.com.arthur.reciclagem.view;
 
+import br.com.arthur.reciclagem.controller.Cargo2Controller;
 import br.com.arthur.reciclagem.controller.FuncionarioController;
+import br.com.arthur.reciclagem.modelo.Cargo2;
 import br.com.arthur.reciclagem.modelo.Funcionario;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,6 +29,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
     public FuncionarioInserirGUI(DefaultTableModel modelo) {
         this.modelo = modelo;
         initComponents();
+        carregarCombo();
     }
 
     public FuncionarioInserirGUI(DefaultTableModel modelo, int linhaSelecionada, int idFuncionario) {
@@ -35,7 +41,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
         txId.setText(String.valueOf(f.getId()));
         txBairro.setText(f.getBairro());
-        txCargo.setText(f.getCargo());
+        //txCargo.setText(f.getCargo());
         txCelular.setText(f.getCelular());
         txCidade.setText(f.getCidade());
         txCpf.setText(f.getCpf());
@@ -100,11 +106,12 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txCargo = new javax.swing.JTextField();
         txDataAdmissao = new javax.swing.JTextField();
         txCtps = new javax.swing.JTextField();
         txSetor = new javax.swing.JTextField();
         txSalario = new javax.swing.JTextField();
+        cbCargo2 = new javax.swing.JComboBox();
+        btAbrirCargo2 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         txTelefone = new javax.swing.JTextField();
@@ -256,6 +263,20 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Lao UI", 0, 12)); // NOI18N
         jLabel7.setText("Salário:");
 
+        cbCargo2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCargo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCargo2ActionPerformed(evt);
+            }
+        });
+
+        btAbrirCargo2.setText("+");
+        btAbrirCargo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirCargo2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -265,8 +286,10 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbCargo2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btAbrirCargo2))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,7 +307,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txCtps, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(447, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +315,8 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCargo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAbrirCargo2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -556,7 +580,8 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao converter a data");
         }
         f.setSetor(txSetor.getText());
-        f.setCargo(txCargo.getText());        
+        f.setCargo2((Cargo2) cbCargo2.getSelectedItem());
+        //f.setCargo(txCargo.getText());        
         f.setLogin(txLogin.getText());
         f.setSenha(txSenha.getText());        
  
@@ -583,7 +608,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         txBairro.setText("");
-        txCargo.setText("");
+        //txCargo.setText("");
         txCelular.setText("");
         txCidade.setText("");
         txCpf.setText("");
@@ -601,6 +626,29 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         txSetor.setText("");
         txTelefone.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void carregarCombo() {
+        
+        DefaultComboBoxModel comboModel = (DefaultComboBoxModel) cbCargo2.getModel();
+        comboModel.removeAllElements();
+        List<Cargo2> cargos = new ArrayList<>();
+        Cargo2Controller cc = new Cargo2Controller();
+        cargos = cc.listarTodos();
+        for (int linha = 0; linha < cargos.size(); linha++) {
+            Cargo2 c = cargos.get(linha);
+            comboModel.addElement(c);
+        }
+    }
+    
+    private void cbCargo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCargo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCargo2ActionPerformed
+
+    private void btAbrirCargo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirCargo2ActionPerformed
+        Cargo2ListarGUI fi = new Cargo2ListarGUI(modelo);
+        fi.setLocationRelativeTo(null);
+        fi.setVisible(true);
+    }//GEN-LAST:event_btAbrirCargo2ActionPerformed
 
 
 //    public static void main(String args[]) {
@@ -635,8 +683,10 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 //        });
 //    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAbrirCargo2;
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbCargo2;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -668,7 +718,6 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTextField txBairro;
-    private javax.swing.JTextField txCargo;
     private javax.swing.JTextField txCelular;
     private javax.swing.JTextField txCidade;
     private javax.swing.JTextField txCpf;
