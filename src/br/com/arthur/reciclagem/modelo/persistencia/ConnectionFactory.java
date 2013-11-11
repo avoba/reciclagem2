@@ -16,8 +16,7 @@ public class ConnectionFactory {
     public static Connection getConnection()
             throws SQLException {
         try {
-            return DriverManager.getConnection(STR_CONEXAO + DATABASE,
-                    USER, PASSWORD);
+            return DriverManager.getConnection(STR_CONEXAO + DATABASE,USER, PASSWORD);
         } catch (Exception e) {
             throw new SQLException(e.getMessage());
         }

@@ -14,6 +14,11 @@ public class Cargo2 {
     private String descricao;
     private int horas;
 
+    @Override
+    public String toString() {
+        return cargo2;
+    }
+
     public int getCodigo() {
         return codigo;
     }

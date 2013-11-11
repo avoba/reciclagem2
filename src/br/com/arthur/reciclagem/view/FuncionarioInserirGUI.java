@@ -22,8 +22,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
-    private DefaultTableModel modelo;
+    
     private int linhaSelecionada;
+    private DefaultTableModel modelo = new DefaultTableModel();
 
   
     public FuncionarioInserirGUI(DefaultTableModel modelo) {
@@ -123,7 +124,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
