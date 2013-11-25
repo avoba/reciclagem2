@@ -183,7 +183,7 @@ public class JanelaLogin extends javax.swing.JFrame {
 
             PrincipalGUI p = new PrincipalGUI(modelo);
             p.setLocationRelativeTo(null);
-            p.setExtendedState(p.MAXIMIZED_BOTH);
+            
             p.setVisible(true);
 
         } else {
